@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ગુણપત્રક - શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Print styling rules: Perfectly centered on A4 without top clipping */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 10mm; /* Safe top margin to prevent cutting */
+      }
+      
+      html, body { 
+        background: white !important; 
+        font-size: 11.5px !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important; /* Vertically center on print page */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .site-header, .no-print, .site-footer { display: none !important; }
+      
+      .main-content {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .section.container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+
+      .card { 
+        box-shadow: none !important; 
+        border: 2px solid #1e293b !important; 
+        margin: auto !important; 
+        padding: 12px 18px !important; 
+        width: 100% !important; 
+        max-width: 185mm !important; /* Fits safely inside printable A4 margins */
+        box-sizing: border-box !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      table th, table td {
+        padding: 4px 8px !important;
+      }
+
+      .print-signatures { 
+        display: flex !important; 
+        justify-content: space-between; 
+        margin-top: 25px !important; 
+        page-break-inside: avoid; 
+        break-inside: avoid;
+      }
+    }
+
+    .print-signatures { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">
+        <img src="../Images/School Logo.png" alt="School Logo" class="brand-logo">
+        <div class="brand-text">
+          <p class="tagline">|| સત્યમેવ જયતે ||</p>
+          <p class="managed-by">શ્રી ઝુલાસણ કેળવણી મંડળ સંચાલિત</p>
+          <h1 class="school-name">શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ, ઝુલાસણ</h1>
+        </div>
+      </div>
+      <div>
+        <button onclick="handleLogout()" class="btn btn-outline" style="border-color: #ef4444; color: #ef4444;">🚪 Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Result Sheet Content Section -->
+  <main class="main-content">
+    <section class="section container" style="max-width: 800px; margin: 0 auto;">
+      
+      <div class="card" id="markSheetCard" style="padding: 25px; margin: 0 auto;">
+        
+        <!-- School Marksheet Heading with Dual Side Logos -->
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #cbd5e1; padding-bottom: 12px; margin-bottom: 15px; text-align: center;">
+          <img src="../Result/LOGO.png" alt="Left Logo" style="height: 80px; width: 80px; object-fit: contain;">
+          <div style="flex-grow: 1; padding: 0 10px;">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">શ્રી ઝુલાસણ કેળવણી મંડળ સંચાલિત</p>
+            <h2 style="font-size: 1.3rem; color: var(--text-main); margin: 2px 0;">શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ, ઝુલાસણ</h2>
+            <p style="font-weight: 600; color: var(--secondary-color); font-size: 0.85rem; margin-top: 2px;">પ્રથમ પરીક્ષા ગુણપત્રક (First Exam Marksheet 2026-27)</p>
+          </div>
+          <img src="../Result/s2.jpg" alt="Right Logo" style="height: 80px; width: 80px; object-fit: contain;">
+        </div>
+
+        <!-- Student Personal Details Grid -->
+        <div class="grid-layout grid-2" style="margin-bottom: 12px; background: var(--surface-hover); padding: 10px 14px; border-radius: 6px;">
+          <div>
+            <p style="font-size: 0.95rem;"><strong>વિદ્યાર્થીનું નામ:</strong> <span id="sName">-</span></p>
+            <p style="margin-top: 5px; font-size: 0.95rem;"><strong>રોલ નંબર:</strong> <span id="sRoll">-</span></p>
+          </div>
+          <div>
+            <p style="font-size: 0.95rem;"><strong>ધોરણ:</strong> <span id="sStd">-</span></p>
+            <p style="margin-top: 5px; font-size: 0.95rem;"><strong>પરિણામ (Status):</strong> <span id="sResult" style="font-weight: bold;">-</span></p>
+          </div>
+        </div>
+
+        <!-- Marks Table -->
+        <table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 12px;">
+          <thead>
+            <tr style="background: var(--primary-color); color: white;">
+              <th style="padding: 7px 10px; border-top-left-radius: 6px; font-size: 0.9rem;">વિષય (Subject)</th>
+              <th style="padding: 7px 10px; font-size: 0.9rem;">મેળવેલ ગુણ / ગ્રેડ (Marks / Grade)</th>
+              <th style="padding: 7px 10px; border-top-right-radius: 6px; font-size: 0.9rem;">કુલ ગુણ (Max Marks)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">ગુજરાતી (Gujarati)</td><td id="mGujarati" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">હિન્દી (Hindi)</td><td id="mHindi" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">અંગ્રેજી (English)</td><td id="mEnglish" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">સંસ્કૃત (Sanskrit)</td><td id="mSanskrit" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">ગણિત (Maths)</td><td id="mMaths" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">વિજ્ઞાન (Science)</td><td id="mScience" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">સામાજિક વિજ્ઞાન (Social Science)</td><td id="mSocialScience" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">100</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">કમ્પ્યુટર (Computer)</td><td id="mComputer" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">Grade</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">શારીરિક શિક્ષણ (PT)</td><td id="mPT" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">Grade</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px;">ચિત્રકામ (Drawing)</td><td id="mDrawing" style="padding: 6px 10px; font-weight: 600;">-</td><td style="padding: 6px 10px;">Grade</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Result Summary Box (Totals, Percentage & Overall Grade) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #ccfbf1; padding: 10px 14px; border-radius: 6px; margin-bottom: 12px;">
+          <div>
+            <p style="font-size: 0.9rem;"><strong>કુલ ગુણ (Total Marks):</strong> <span id="sTotalMarks" style="color: var(--primary-color); font-weight: bold;">-</span></p>
+          </div>
+          <div>
+            <p style="font-size: 0.9rem;"><strong>ટકાવારી (Percentage):</strong> <span id="sPercentage" style="color: var(--text-main); font-weight: bold;">-</span></p>
+          </div>
+          <div>
+            <p style="font-size: 0.9rem;"><strong>ઓવરઓલ ગ્રેડ (Grade):</strong> <span id="sOverallGrade" style="color: var(--secondary-color); font-weight: bold;">-</span></p>
+          </div>
+        </div>
+
+        <!-- Signatures for Print/PDF Mode -->
+        <div class="print-signatures">
+          <div style="text-align: center;">
+            <p style="margin-bottom: 25px; font-weight: bold; font-size: 0.85rem;">વર્ગ શિક્ષકની સહી</p>
+            <p style="border-top: 1px solid #000; width: 150px; padding-top: 3px; font-size: 0.8rem;">Class Teacher Sign</p>
+          </div>
+          <div style="text-align: center;">
+            <p style="margin-bottom: 25px; font-weight: bold; font-size: 0.85rem;">આચાર્યની સહી અને સિક્કો</p>
+            <p style="border-top: 1px solid #000; width: 150px; padding-top: 3px; font-size: 0.8rem;">Principal Sign & Stamp</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="no-print text-center" style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+          <button onclick="window.print()" class="btn btn-primary" style="height: 42px; padding: 0 25px;">🖨️ Print / Save PDF</button>
+          <a href="../index.html" onclick="handleLogout()" class="btn btn-outline" style="height: 42px; display: inline-flex; align-items: center;">Home</a>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer no-print">
+    <div class="container text-center">
+      <p>© 2026 Shree C. P. Gajjar Highschool, Jhulasan. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const studentData = JSON.parse(localStorage.getItem("currentStudent"));
+      
+      if (!studentData) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Populate Personal Data
+      document.getElementById("sName").innerText = studentData.name || "-";
+      document.getElementById("sRoll").innerText = studentData.rollNo || "-";
+      document.getElementById("sStd").innerText = studentData.std || "-";
+      document.getElementById("sResult").innerText = studentData.result || "-";
+      
+      // Populate Subject Marks
+      if (studentData.marks) {
+        const m = studentData.marks;
+        document.getElementById("mGujarati").innerText = m.Gujarati ?? "-";
+        document.getElementById("mHindi").innerText = m.Hindi ?? "-";
+        document.getElementById("mEnglish").innerText = m.English ?? "-";
+        document.getElementById("mSanskrit").innerText = m.Sanskrit ?? "-";
+        document.getElementById("mMaths").innerText = m.Maths ?? "-";
+        document.getElementById("mScience").innerText = m.Science ?? "-";
+        document.getElementById("mSocialScience").innerText = m.SocialScience ?? "-";
+        document.getElementById("mComputer").innerText = m.Computer ?? "-";
+        document.getElementById("mPT").innerText = m.PT ?? "-";
+        document.getElementById("mDrawing").innerText = m.Drawing ?? "-";
+
+        // Calculate Total Marks Obtained out of 700 (7 theory subjects * 100 marks each)
+        const numericMarks = [m.Gujarati, m.Hindi, m.English, m.Sanskrit, m.Maths, m.Science, m.SocialScience]
+          .filter(val => typeof val === 'number');
+        
+        const totalObtained = numericMarks.reduce((acc, curr) => acc + curr, 0);
+        const maxTotal = numericMarks.length * 100;
+
+        document.getElementById("sTotalMarks").innerText = `${totalObtained} / ${maxTotal}`;
+
+        // Calculate Percentage & Overall Grade
+        let percentage = maxTotal > 0 ? (totalObtained / maxTotal) * 100 : 0;
+        document.getElementById("sPercentage").innerText = `${percentage.toFixed(2)}%`;
+
+        let grade = "D";
+        if (percentage >= 90) grade = "A1";
+        else if (percentage >= 80) grade = "A2";
+        else if (percentage >= 70) grade = "B1";
+        else if (percentage >= 60) grade = "B2";
+        else if (percentage >= 50) grade = "C1";
+        else if (percentage >= 40) grade = "C2";
+        else if (percentage >= 33) grade = "D";
+        else grade = "E (Needs Improvement)";
+
+        document.getElementById("sOverallGrade").innerText = grade;
+      }
+    });
+
+    function handleLogout() {
+      localStorage.removeItem("currentStudent");
+      window.location.href = "login.html";
+    }
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Solar System Chatbot - Shree C.P. Gajjar Highschool, Jhulasan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- School Project Header -->
+  <header id="project-header">
+    <h1>🚀 Solar System Explorer</h1>
+    <h2>Shree C.P. Gajjar Highschool, Jhulasan</h2>
+  </header>
+
+  <!-- Deep Space Background Elements -->
+  <div class="milkyway"></div>
+  <div class="stars" aria-hidden="true"></div>
+
+  <!-- Interactive Solar System -->
+  <main class="solar-system">
+    <!-- Sun -->
+    <div class="sun" data-name="Sun" style="--glow: #ffd66b;"></div>
+
+    <!-- Mercury -->
+    <div class="orbit" style="--orbit-size:150px; --period:6s;">
+      <div class="planet mercury" data-name="Mercury" style="--planet-size:10px; --glow:#cfcfcf;"></div>
+    </div>
+
+    <!-- Venus -->
+    <div class="orbit" style="--orbit-size:200px; --period:10s;">
+      <div class="planet venus" data-name="Venus" style="--planet-size:14px; --glow:#ffb86b;"></div>
+    </div>
+
+    <!-- Earth & Moon -->
+    <div class="orbit" style="--orbit-size:260px; --period:14s;">
+      <div class="planet earth" data-name="Earth" style="--planet-size:18px; --glow:#4fb0ff;">
+        <div class="moon-orbit" style="--orbit-size:48px; --period:2.4s;">
+          <div class="moon" data-name="Moon" style="--planet-size:7px; --glow:#dcdcdc;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mars -->
+    <div class="orbit" style="--orbit-size:320px; --period:18s;">
+      <div class="planet mars" data-name="Mars" style="--planet-size:14px; --glow:#ff6b4b;"></div>
+    </div>
+
+    <!-- Jupiter -->
+    <div class="orbit" style="--orbit-size:410px; --period:24s;">
+      <div class="planet jupiter" data-name="Jupiter" style="--planet-size:36px; --glow:#ffd39b;"></div>
+    </div>
+
+    <!-- Saturn -->
+    <div class="orbit" style="--orbit-size:490px; --period:30s;">
+      <div class="planet saturn" data-name="Saturn" style="--planet-size:32px; --glow:#f0d58b;">
+        <div class="ring"></div>
+      </div>
+    </div>
+
+    <!-- Uranus -->
+    <div class="orbit" style="--orbit-size:570px; --period:38s;">
+      <div class="planet uranus" data-name="Uranus" style="--planet-size:26px; --glow:#bfe7ff;"></div>
+    </div>
+
+    <!-- Neptune -->
+    <div class="orbit" style="--orbit-size:650px; --period:46s;">
+      <div class="planet neptune" data-name="Neptune" style="--planet-size:26px; --glow:#7bb0ff;"></div>
+    </div>
+  </main>
+
+  <!-- Dynamic Tooltip -->
+  <div id="tooltip" aria-hidden="true"></div>
+
+  <!-- Rocket Chatbot -->
+  <aside id="chatbot" class="chatbot" aria-hidden="false">
+    <button id="chat-icon" class="chat-icon" aria-label="Open chat">🚀</button>
+
+    <div id="chat-box" class="chat-box" role="dialog" aria-label="Planet chat" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-title">🌌 Space Guide</div>
+        <button id="chat-close" class="chat-close" aria-label="Close chat">✖</button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+
+      <div class="chat-input">
+        <input id="chat-input" type="text" autocomplete="off" placeholder="Ask about Mars, Earth, or Jupiter!" />
+        <button id="chat-send" class="chat-send">Send</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

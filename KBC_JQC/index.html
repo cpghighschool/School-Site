@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom KBC Quiz - Neon Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Intro Screen -->
+    <div id="introScreen" class="screen active">
+        <h1 class="scl-title">શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ ઝુલાસણ</h1>
+        <h1 class="logo-text">QUIZ COMPETITION</h1>
+        <div id="teamSetupContainer" class="team-setup">
+            <div id="teamInputList">
+                <input type="text" class="team-name-input" placeholder="Team 1 Name" value="Team A">
+            </div>
+            <button class="btn-secondary" onclick="addTeamInput()">+ Add Player / Team</button>
+            <button class="btn-primary" onclick="startGame()">START GAME</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <header class="game-header">
+            <div id="dynamicScoreboard" class="score-container"></div>
+            <div id="scl" class="scltitle">શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ ઝુલાસણ</div>
+            <div class="round-info">
+                <h2 id="roundTitle">Round 1</h2>
+                <h3 id="turnIndicator">Waiting...</h3>
+            </div>
+        </header>
+
+        <div class="timer-container">
+            <div id="timerBox" class="timer-box">
+                <div id="timerDisplay">--</div>
+            </div>
+            <button id="pauseBtn" class="btn-secondary" onclick="togglePause()">⏸ PAUSE</button>
+        </div>
+
+        <main class="game-main">
+            <div id="lifelineArea" class="lifeline-container">
+                <button id="ll-5050" class="btn-lifeline" onclick="useLifeline('5050')">50:50</button>
+                <button id="ll-poll" class="btn-lifeline" onclick="useLifeline('poll')">📊 Poll</button>
+                <button id="ll-friend" class="btn-lifeline" onclick="useLifeline('friend')">📞 Friend</button>
+                <button id="ll-expert" class="btn-lifeline" onclick="useLifeline('expert')">🧠 Expert</button>
+            </div>
+
+            <div class="question-box">
+                <img id="questionImage" src="" alt="Question Visual" style="display:none;">
+                <h2 id="questionText">Question will appear here</h2>
+            </div>
+
+            <div class="options-grid">
+                <button id="opt-A" class="btn-option" onclick="selectOption('A')"><span class="opt-letter">A:</span> <span id="text-A"></span></button>
+                <button id="opt-B" class="btn-option" onclick="selectOption('B')"><span class="opt-letter">B:</span> <span id="text-B"></span></button>
+                <button id="opt-C" class="btn-option" onclick="selectOption('C')"><span class="opt-letter">C:</span> <span id="text-C"></span></button>
+                <button id="opt-D" class="btn-option" onclick="selectOption('D')"><span class="opt-letter">D:</span> <span id="text-D"></span></button>
+            </div>
+
+            <div class="teacher-controls">
+                <div id="buzzerArea"></div>
+                <div class="action-btns">
+                    <button id="revealBtn" class="btn-primary" style="display:none;" onclick="revealAnswer()">REVEAL ANSWER</button>
+                    <button id="nextBtn" class="btn-primary" style="display:none;" onclick="setupNext()">NEXT ➔</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div id="overlay" class="overlay">
+        <div id="modalContent" class="modal"></div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

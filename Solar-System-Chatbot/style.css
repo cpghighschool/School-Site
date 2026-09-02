@@ -1,0 +1,204 @@
+/* Base Styles & Background */
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at center, #000010, #000000 90%);
+  color: white;
+  font-family: 'Inter', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* School Header */
+#project-header {
+  position: relative;
+  z-index: 100;
+  text-align: center;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  padding: 15px;
+  border-bottom: 2px solid #4fb0ff;
+  box-shadow: 0 4px 15px rgba(0, 208, 255, 0.2);
+}
+
+#project-header h1 {
+  margin: 0 0 5px 0;
+  font-size: 2.2em;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(79, 176, 255, 0.8);
+}
+
+#project-header h2 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: #aef0ff;
+}
+
+/* Space Environment (Stars & Milkyway) */
+.stars {
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.95) 50%, transparent 51%),
+    radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.9) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.85) 50%, transparent 51%);
+  background-size: 100% 100%;
+  opacity: 0.9; 
+  animation: twinkle 6s infinite alternate;
+  pointer-events: none;
+}
+@keyframes twinkle { from { opacity: 0.5 } to { opacity: 1 } }
+
+.milkyway {
+  position: fixed; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+  transform: rotate(-25deg);
+  filter: blur(100px);
+  animation: drift 100s linear infinite;
+  z-index: -2;
+}
+@keyframes drift {
+  from { transform: rotate(-25deg) translateX(0); }
+  to { transform: rotate(-25deg) translateX(-150px); }
+}
+
+/* Solar System Layout */
+.solar-system {
+  position: relative;
+  width: 100vw; height: calc(100vh - 80px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  transform: scale(0.85);
+}
+
+/* The Sun */
+.sun {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff9b8, #ffbb33 40%, #cc8b00 100%);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 60px rgba(255, 200, 70, 0.4);
+  z-index: 50; cursor: pointer; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Orbits */
+.orbit {
+  position: absolute; top: 50%; left: 50%;
+  width: var(--orbit-size); height: var(--orbit-size);
+  margin-left: calc(var(--orbit-size) / -2);
+  margin-top: calc(var(--orbit-size) / -2);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  pointer-events: none;
+  animation: spin var(--period) linear infinite;
+  z-index: 10;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Planets */
+.planet, .moon {
+  position: absolute; top: 50%; left: 50%;
+  width: var(--planet-size); height: var(--planet-size);
+  border-radius: 50%;
+  transform: translateX(calc(var(--orbit-size) / 2 - var(--planet-size) / 2)) translateY(-50%);
+  pointer-events: auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 30;
+}
+
+/* Planet Textures */
+.mercury { background: linear-gradient(120deg,#bdbdbd,#9a9a9a); }
+.venus   { background: linear-gradient(120deg,#ffb880,#f08f3f); }
+.earth   { background: linear-gradient(120deg,#2a8cff,#1a5fcb); position: relative; }
+.moon    { background: linear-gradient(120deg,#e6e6e6,#bfbfbf); transform: translateX(calc(var(--orbit-size) / 2 - var(--planet-size) / 2)) translateY(-50%); }
+.mars    { background: linear-gradient(120deg,#ff7a63,#d84a34); }
+.jupiter { background: radial-gradient(circle at 30% 30%, #ffd9b0,#d8a06e); }
+.saturn  { background: linear-gradient(120deg,#f6d9a0,#d8b47a); position: relative; }
+.uranus  { background: linear-gradient(120deg,#bfe9ff,#7fcfe6); }
+.neptune { background: linear-gradient(120deg,#86bfff,#2f8bd6); }
+
+/* Saturn's Rings */
+.saturn .ring {
+  position: absolute; left: 50%; top: 50%;
+  width: calc(var(--planet-size) * 2.6); height: calc(var(--planet-size) * 1.1);
+  transform: translate(-50%, -50%) rotate(22deg);
+  border-radius: 50%; border: 3px solid rgba(210,180,140,0.7);
+  z-index: 40; pointer-events: none;
+}
+
+/* Moon Orbit */
+.moon-orbit {
+  position: absolute; top: 50%; left: 50%;
+  width: var(--orbit-size); height: var(--orbit-size);
+  margin-left: calc(var(--orbit-size) / -2);
+  margin-top: calc(var(--orbit-size) / -2);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spin var(--period) linear infinite;
+  z-index: 35;
+}
+
+/* Hover Effects (Exciting for kids!) */
+.hovered { 
+  transform: translateX(calc(var(--orbit-size) / 2 - var(--planet-size) / 2)) translateY(-50%) scale(1.4); 
+  box-shadow: 0 0 25px var(--glow), 0 0 45px rgba(255,255,255,0.5); 
+  z-index: 999; 
+}
+.sun.hovered { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 90px var(--glow); }
+
+/* Tooltips */
+#tooltip {
+  position: fixed; display: none; padding: 8px 14px; font-size: 15px; font-weight: bold;
+  background: #000; color: #69f6ff; border-radius: 8px; pointer-events: none;
+  box-shadow: 0 0 15px rgba(0, 208, 255, 0.4); z-index: 20000; white-space: nowrap;
+  border: 1px solid rgba(105, 246, 255, 0.3);
+}
+
+/* Chatbot UI */
+#chatbot { position: fixed; right: 20px; bottom: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; z-index: 99999; }
+
+.chat-icon {
+  width: 65px; height: 65px; border-radius: 50%;
+  font-size: 30px; background: linear-gradient(180deg, #111, #06060b);
+  border: 2px solid #00f0ff;
+  box-shadow: 0 0 15px #00f0ff, 0 0 25px #0044ff;
+  cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.chat-icon:hover { transform: scale(1.15) rotate(-10deg); box-shadow: 0 0 25px #00f0ff, 0 0 40px #0044ff; }
+
+.chat-box {
+  width: 300px; height: 380px; border-radius: 15px; overflow: hidden;
+  background: linear-gradient(180deg, #05061a, #07101b);
+  border: 1px solid rgba(0,208,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+  transform: translateY(20px) scale(0.9); opacity: 0; visibility: hidden; pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex; flex-direction: column;
+}
+
+#chatbot.open .chat-box {
+  transform: translateY(0) scale(1); opacity: 1; visibility: visible; pointer-events: auto;
+}
+
+.chat-header {
+  display: flex; align-items: center; justify-content: space-between; padding: 15px;
+  background: linear-gradient(90deg, #0f2027, #203a43); border-bottom: 2px solid #00f0ff;
+}
+.chat-title { font-weight: bold; font-size: 16px; color: #00f0ff; }
+.chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; transition: color 0.2s; }
+.chat-close:hover { color: #ff4a4a; }
+
+.chat-messages {
+  flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; line-height: 1.4; color: #e6f7ff;
+}
+.chat-messages div { margin-bottom: 12px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+.chat-input { display: flex; gap: 8px; padding: 12px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05); }
+#chat-input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #07121a; color: #fff; }
+#chat-input:focus { outline: none; border-color: #00f0ff; box-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
+.chat-send { padding: 10px 15px; border-radius: 8px; border: none; background: linear-gradient(180deg,#00d8ff,#0099ff); color: #000; cursor: pointer; font-weight: bold; transition: opacity 0.2s; }
+.chat-send:hover { opacity: 0.8; }

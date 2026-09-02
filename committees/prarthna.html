@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>પ્રાર્થના સમિતિ - શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ</title>
+  <!-- Links to the main root CSS -->
+  <link rel="stylesheet" href="../style.css">
+  
+  <!-- Print-Only Layout Control (Webpage view remains 100% untouched) -->
+  <style>
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm; /* Safe compact margin to completely eliminate border clipping */
+      }
+      * {
+        box-sizing: border-box !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        background-color: #fff !important;
+        color: #000 !important;
+        font-size: 11px !important;
+      }
+      .site-header, .site-footer, .btn-outline, button {
+        display: none !important;
+      }
+      .main-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .card {
+        box-shadow: none !important;
+        border: 1px solid #444 !important;
+        border-radius: 5px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 8px !important;
+        padding: 8px 12px !important;
+      }
+      .card.text-center {
+        padding: 8px !important;
+        margin-bottom: 8px !important;
+      }
+      .card.text-center h2 {
+        font-size: 15px !important;
+        margin-bottom: 2px !important;
+      }
+      .hero-subtitle {
+        font-size: 10.5px !important;
+        margin-top: 2px !important;
+      }
+      .grid-layout {
+        display: grid !important;
+        gap: 8px !important;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr 1fr !important;
+        margin-bottom: 8px !important;
+      }
+
+      /* --- DYNAMIC PRINT COLUMNS CONTROLLED BY JAVASCRIPT --- */
+      .student-print-grid.print-cols-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      .student-print-grid.print-cols-3 {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      .student-print-grid.print-cols-4 {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+
+      .card h3 {
+        font-size: 12px !important;
+        color: #0b5ed7 !important;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 3px;
+        margin-bottom: 5px !important;
+      }
+      .info-item {
+        background: #fafafa !important;
+        border: 1px solid #ccc !important;
+        border-radius: 3px !important;
+        padding: 5px 7px !important;
+        margin-bottom: 0 !important;
+      }
+      .info-title {
+        font-size: 10.5px !important;
+        color: #111 !important;
+        font-weight: bold;
+        margin: 2px 0 0 0 !important;
+      }
+      .info-date {
+        font-size: 9px !important;
+        color: #555 !important;
+        display: block;
+      }
+      ul.flex-column {
+        margin: 0 !important;
+        padding-left: 14px !important;
+      }
+      ul.flex-column li {
+        font-size: 10.5px !important;
+        margin-bottom: 2px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">
+        <img src="../Images/School Logo.png" alt="School Logo" class="brand-logo">
+        <div class="brand-text">
+          <p class="tagline">|| સત્યમેવ જયते ||</p>
+          <p class="managed-by">શ્રી ઝુલાસણ કેળવણી મંડળ સંચાલિત</p>
+          <h1 class="school-name">શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ, ઝુલાસણ</h1>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="../index.html" class="btn btn-outline">⬅ Back to Home</a>
+        <!-- Print Button Added Here -->
+        <button onclick="triggerPrint()" class="btn btn-primary" style="background-color: var(--primary-color); color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">🖨️ Print Page</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Committee Main Content Section -->
+  <main class="main-content">
+    <section class="section container">
+      
+      <!-- Committee Header Card -->
+      <div class="card text-center" style="margin-bottom: 20px;">
+        <h2 class="section-title" style="display: inline-block; border-bottom: 3px solid var(--primary-color); padding-bottom: 6px; margin-bottom: 0; position: relative;">
+          🙏 પ્રાર્થના સમિતિ (Prayer Committee)
+          <style>
+            .card .section-title::after { display: none !important; }
+          </style>
+        </h2>
+        <p class="hero-subtitle" style="margin-top: 10px;">શાળાના દિવસની શરૂઆત સકારાત્મક ઊર્જા, શિસ્ત અને આધ્યાત્મિકતા સાથે કરવી.</p>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid-layout grid-2">
+        
+        <!-- Objectives Card -->
+        <div class="card">
+          <h3 style="color: var(--primary-color); margin-bottom: 10px;">સમિતિના ઉદ્દેશ્યો (Objectives)</h3>
+          <ul class="flex-column" style="list-style-position: inside; color: var(--text-muted);">
+            <li>વિદ્યાર્થીઓમાં નૈતિક અને આધ્યાત્મિક મૂલ્યોનું સિંચન કરવું.</li>
+            <li>દૈનિક પ્રાર્થના સભાનું સુચારુ સંચાલન કરવું.</li>
+            <li>વિદ્યાર્થીઓમાં સમયની પાબંદી અને શિસ્ત કેળવવી.</li>
+            <li>રાષ્ટ્રગીત અને પ્રાર્થનાનું શુદ્ધ ઉચ્ચારણ શીખવવું.</li>
+          </ul>
+        </div>
+
+        <!-- Faculty Members Card -->
+        <div class="card">
+          <h3 style="color: var(--primary-color); margin-bottom: 10px;">માર્ગદર્શક શિક્ષકો (Faculty Members)</h3>
+          <div class="grid-layout grid-3">
+            <div class="info-item">
+              <span class="info-date">અધ્યક્ષ (Chairman)</span>
+              <h4 class="info-title">Shri Ambalal Prajapati</h4>
+            </div>
+            <div class="info-item">
+              <span class="info-date">સંયોજક (Coordinator)</span>
+              <h4 class="info-title">Shri Shambhubhai Rabari</h4>
+            </div>
+            <div class="info-item">
+              <span class="info-date">સહ-સંયોજક (Co-Coordinator)</span>
+              <h4 class="info-title">Shri Joitaram Patel</h4>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Student Members Section -->
+      <div class="card mt-20">
+        <h3 style="color: var(--primary-color); margin-bottom: 15px;">વિદ્યાર્થી સભ્યો (Student Members)</h3>
+        <!-- Added 'student-print-grid' class for dynamic count check -->
+        <div class="grid-layout grid-3 student-print-grid" id="studentGrid">
+          <div class="info-item">
+            <span class="info-date">ધોરણ 12 - વિજ્ઞાન પ્રવાહ</span>
+            <h4 class="info-title">પટેલ રાહુલકુમાર કે.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 11 - સામાન્ય પ્રવાહ</span>
+            <h4 class="info-title">પ્રજાપતિ અંકિતાબેન એસ.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 10</span>
+            <h4 class="info-title">રાવલ દર્શનકુમાર એમ.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 12 - સામાન્ય પ્રવાહ</span>
+            <h4 class="info-title">ચૌધરી પ્રિયંકાબેન જી.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 11 - વિજ્ઞાન પ્રવાહ</span>
+            <h4 class="info-title">પટેલ જયેશકુમાર બી.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 10</span>
+            <h4 class="info-title">સુથાર મિહિરકુમાર એચ.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 9</span>
+            <h4 class="info-title">રાવલ દીયાબેન કે.</h4>
+          </div>
+          <div class="info-item">
+            <span class="info-date">ધોરણ 9</span>
+            <h4 class="info-title">પરમાર રોહિતકુમાર વી.</h4>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>© 2026 Shree C. P. Gajjar Highschool, Jhulasan. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Dynamic Print Script -->
+  <script>
+    function triggerPrint() {
+      const grid = document.getElementById('studentGrid');
+      const itemCount = grid ? grid.children.length : 0;
+
+      // Clear previous print column classes
+      grid.classList.remove('print-cols-2', 'print-cols-3', 'print-cols-4');
+
+      // Dynamically assign print layout based on exact item quantity
+      if (itemCount <= 2) {
+        grid.classList.add('print-cols-2'); // 2 names per row if data is sparse
+      } else if (itemCount <= 4) {
+        grid.classList.add('print-cols-4'); // 4 names per row for moderate counts
+      } else {
+        grid.classList.add('print-cols-3'); // 3 names per row for large counts to fit neatly on 1 page
+      }
+
+      // Trigger standard print dialog
+      window.print();
+    }
+  </script>
+
+  <script src="../script.js"></script>
+</body>
+</html>

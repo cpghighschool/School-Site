@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Second/Prilim Exam Result Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header-container">
+            <!-- Left Logo -->
+            <img src="LOGO.png" alt="School Logo" class="school-logo">
+            
+            <!-- Center School Name -->
+            <div class="header-titles">
+                <h1>Shree C. P. Gajjar High School</h1>
+                <h2>Student Second/Prilim Exam Result Portal</h2>
+            </div>
+            
+            <!-- Right Image (Change 'right-logo.jpg' to your second image filename) -->
+            <img src="s2.jpg" alt="Right Image" class="school-logo">
+        </header>
+
+        <div class="search-section">
+            <label for="standardSelect"><strong>1. Select Standard:</strong></label>
+            <select id="standardSelect" style="padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+
+            <label for="rollInput"><strong>2. Enter Roll Number:</strong></label>
+            <input type="text" id="rollInput" placeholder="e.g., 101, 102" autocomplete="off">
+            <button onclick="searchResult()" style="margin-top: 10px;">Get Result</button>
+        </div>
+
+        <div id="errorMessage" class="error hidden"></div>
+
+        <div id="resultCard" class="result-card hidden">
+            <center><h3 id="studentName"></h3></center>
+            <p><strong>Roll No:</strong> <span id="studentRoll"></span> | <strong>Standard:</strong> <span id="studentGrade"></span></p>
+            
+            <table class="marks-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                    </tr>
+                </thead>
+                <!-- Give the body an ID so JavaScript can inject rows here -->
+                <tbody id="marksBody">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th id="totalMarks"></th>
+                        <!-- Give the max marks an ID so it can update dynamically -->
+                        <th id="maxTotalMarks"></th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="final-status">
+                <h3>Result: <span id="passFailStatus"></span></h3>
+                <p>Percentage: <span id="percentage"></span>%</p>
+            </div>
+			
+        </div>
+    </div>
+
+    <script src="sedb.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

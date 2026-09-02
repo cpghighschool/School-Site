@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>વિદ્યાર્થી લોગિન - શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="flex-center" style="min-height: 100vh; background: radial-gradient(circle at top, rgba(13,148,136,0.15), #f0fdfa);">
+
+  <div class="card" style="width: 100%; max-width: 420px; padding: 40px;">
+    <div class="text-center" style="margin-bottom: 25px;">
+      <img src="../Images/School Logo.png" alt="Logo" style="height: 70px; margin-bottom: 10px;">
+      <h2 class="section-title" style="font-size: 1.5rem;">Student Result Login</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">પ્રથમ પરીક્ષા પરિણામ જોવા માટે લોગિન કરો</p>
+    </div>
+
+    <form id="loginForm" class="flex-column" onsubmit="handleLogin(event)">
+      <div>
+        <label for="stdSelect" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">ધોરણ (Standard):</label>
+        <select id="stdSelect" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; outline: none; background: white; cursor: pointer;">
+          <option value="">ધોરણ પસંદ કરો</option>
+          <option value="9">ધોરણ 9</option>
+          <option value="10">ધોરણ 10</option>
+          <option value="11">ધોરણ 11</option>
+          <option value="12">ધોરણ 12</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rollNo" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">રોલ નંબર (Roll Number):</label>
+        <input type="text" id="rollNo" required placeholder="ઉદા. 101" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; outline: none;">
+      </div>
+
+      <div>
+        <label for="password" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.9rem;">પાસવર્ડ (Password):</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <input type="password" id="password" required placeholder="તમારો પાસવર્ડ દાખલ કરો" style="width: 100%; padding: 12px; padding-right: 45px; border-radius: 8px; border: 1px solid #cbd5e1; outline: none;">
+          <button type="button" onclick="togglePassword()" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; font-size: 1.1rem;" title="Show/Hide Password">👁️</button>
+        </div>
+      </div>
+
+      <p id="errorMsg" style="color: #ef4444; font-size: 0.85rem; text-align: center; display: none;"></p>
+
+      <!-- Explicitly added z-index and cursor pointer to guarantee clickability -->
+      <button type="submit" id="loginBtn" class="btn btn-primary" style="height: 50px; margin-top: 10px; width: 100%; cursor: pointer; position: relative; z-index: 10;">લોગિન કરો (Login)</button>
+    </form>
+
+    <div class="text-center" style="margin-top: 20px;">
+      <a href="../index.html" style="color: var(--secondary-color); text-decoration: none; font-size: 0.9rem; font-weight: 600;">⬅ મુખ્ય પૃષ્ઠ પર પાછા જાઓ</a>
+    </div>
+  </div>
+
+  <!-- Connect to the central database file -->
+<script src="fedb.js"></script>
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      
+      const standard = document.getElementById("stdSelect").value;
+      const roll = document.getElementById("rollNo").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const err = document.getElementById("errorMsg");
+
+      if (typeof studentDatabase === "undefined") {
+        err.style.display = "block";
+        err.innerText = "ડેટાબેઝ ફાઇલ લોડ થઈ નથી! (db.js missing)";
+        return;
+      }
+
+      // Check if the standard array exists
+      const standardList = studentDatabase[standard];
+      if (standardList) {
+        // Find the student whose rollNo and password match
+        const student = standardList.find(s => s.rollNo === roll && s.password === pass);
+        
+        if (student) {
+          // Save session securely and redirect
+          localStorage.setItem("currentStudent", JSON.stringify(student));
+          window.location.href = "fe.html";
+          return;
+        }
+      }
+
+      // If no match found
+      err.style.display = "block";
+      err.innerText = "ખોટું ધોરણ, રોલ નંબર અથવા પાસવર્ડ! (Invalid credentials)";
+    }
+    function togglePassword() {
+      const passInput = document.getElementById("password");
+      if (passInput.type === "password") {
+        passInput.type = "text";
+      } else {
+        passInput.type = "password";
+      }
+    }
+  </script>
+</body>
+</html>
