@@ -305,7 +305,7 @@ body {
 
 .hero-image { 
   max-width: 100%; 
-  width: 900px;
+  width: 100%;
   height: auto; 
   border-radius: var(--radius-lg); 
   box-shadow: 0 25px 50px -12px rgba(13, 148, 136, 0.25); 
