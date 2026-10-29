@@ -105,6 +105,14 @@ body {
 }
 .brand-logo:hover { transform: scale(1.05) rotate(-2deg); }
 
+.school-logo {
+  height: 85px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.10));
+  transition: var(--transition);
+}
+.school-logo:hover { transform: scale(1.05) rotate(-2deg); }
+
 .tagline { 
   color: var(--secondary-color); 
   font-weight: 700; 
