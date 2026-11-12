@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ગુણપત્રક - શ્રી સી.પી.ગજ્જર હાઈસ્કૂલ</title>
   <link rel="stylesheet" href="../style.css">
+  <script>
+    if (!localStorage.getItem("currentStudent")) {
+      window.location.replace("login.html");
+    }
+  </script>
   <style>
     /* Print styling rules: Perfectly centered on A4 without top clipping */
     @media print {
@@ -97,7 +102,7 @@
   <main class="main-content">
     <section class="section container" style="max-width: 800px; margin: 0 auto;">
       
-      <div class="card" id="markSheetCard" style="padding: 25px; margin: 0 auto;">
+      <div class="card" id="markSheetCard" style="display: none; padding: 25px; margin: 0 auto;">
         
         <!-- School Marksheet Heading with Dual Side Logos -->
         <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #cbd5e1; padding-bottom: 12px; margin-bottom: 15px; text-align: center;">
@@ -165,7 +170,7 @@
             <p style="border-top: 1px solid #000; width: 150px; padding-top: 3px; font-size: 0.8rem;">Class Teacher Sign</p>
           </div>
           <div style="text-align: center;">
-            <p style="margin-bottom: 25px; font-weight: bold; font-size: 0.85rem;">આચાર્યની સહી અને સિક્કો</p>
+            <p style="margin-bottom: 25px; font-weight: bold; font-size: 0.85rem;">આચાર્યશ્રીની સહી અને સિક્કો</p>
             <p style="border-top: 1px solid #000; width: 150px; padding-top: 3px; font-size: 0.8rem;">Principal Sign & Stamp</p>
           </div>
         </div>
@@ -191,11 +196,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const studentData = JSON.parse(localStorage.getItem("currentStudent"));
-      
-      if (!studentData) {
-        window.location.href = "login.html";
-        return;
-      }
+      if (!studentData) return; // Handled by head script
 
       // Populate Personal Data
       document.getElementById("sName").innerText = studentData.name || "-";
@@ -217,7 +218,6 @@
         document.getElementById("mPT").innerText = m.PT ?? "-";
         document.getElementById("mDrawing").innerText = m.Drawing ?? "-";
 
-        // Calculate Total Marks Obtained out of 700 (7 theory subjects * 100 marks each)
         const numericMarks = [m.Gujarati, m.Hindi, m.English, m.Sanskrit, m.Maths, m.Science, m.SocialScience]
           .filter(val => typeof val === 'number');
         
@@ -226,7 +226,6 @@
 
         document.getElementById("sTotalMarks").innerText = `${totalObtained} / ${maxTotal}`;
 
-        // Calculate Percentage & Overall Grade
         let percentage = maxTotal > 0 ? (totalObtained / maxTotal) * 100 : 0;
         document.getElementById("sPercentage").innerText = `${percentage.toFixed(2)}%`;
 
@@ -242,13 +241,15 @@
 
         document.getElementById("sOverallGrade").innerText = grade;
       }
+
+      // Reveal the marksheet card instantly once data is validated
+      document.getElementById("markSheetCard").style.display = "block";
     });
 
     function handleLogout() {
       localStorage.removeItem("currentStudent");
-      window.location.href = "login.html";
+      window.location.replace("login.html");
     }
-    
   </script>
 </body>
 </html>
